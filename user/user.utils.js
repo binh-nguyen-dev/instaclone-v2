@@ -49,6 +49,7 @@ const protect = () => (next) => (parent, args, context, info) => {
 export const generateComposedResolver = (resolver) => {
   const resolversComposition = {
     "Mutation.createPost": [protect()],
+    "Mutation.createComment": [protect()],
   };
 
   return composeResolvers(resolver, resolversComposition);
