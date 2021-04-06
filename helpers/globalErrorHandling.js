@@ -3,7 +3,7 @@ export default function (err) {
 
   if (isPredictableError) return { messages, statusCode };
 
-  if (proces.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production") {
     return {
       messages: [{ msg: "Something went wrong." }],
       statusCode: 500,
