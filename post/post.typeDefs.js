@@ -9,7 +9,7 @@ export default gql`
     user: User
     hashtags: [Hashtag!]!
     photos: [PostPhoto!]!
-    comments: [Comment!]!
+    comments(cursor: Int, take: Int): [Comment!]!
     totalUsersLiked: Int!
     totalComments: Int!
     isMine: Boolean!
