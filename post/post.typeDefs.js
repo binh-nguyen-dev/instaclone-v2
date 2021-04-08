@@ -7,11 +7,10 @@ export default gql`
     createdAt: String!
     updatedAt: String!
     user: User
-    usersLiked: [User!]!
     hashtags: [Hashtag!]!
     photos: [PostPhoto!]!
     comments: [Comment!]!
-    totalUserLiked: Int!
+    totalUsersLiked: Int!
     totalComments: Int!
     isMine: Boolean!
     isLiked: Boolean!
