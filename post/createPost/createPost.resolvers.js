@@ -53,7 +53,7 @@ async function processData(loggedInUser, { caption, photos }) {
 
 function processCaption(caption) {
   // accepts text have format: #[text] / #[text]-[text] / #[text]_[text]
-  const hashtags = caption.match(/(^|\s)(#[a-z\d-_]+)/gi) || [];
+  const hashtags = caption.match(/(#[a-z\d-_]+)/gi) || [];
 
   const dataForHashtags = hashtags.map((hashtag) => ({
     create: { name: hashtag },

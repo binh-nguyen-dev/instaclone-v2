@@ -7,7 +7,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["selectRelationCount"]
 }
 
 model User {
@@ -31,16 +32,17 @@ model User {
 }
 
 model Post {
-  id         Int         @id @default(autoincrement())
-  caption    String?
-  userId     Int
-  user       User        @relation(fields: [userId], references: [id])
-  usersLiked LikePost[]
-  hashtags   Hashtag[]
-  photos     PostPhoto[]
-  comments   Comment[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  id              Int         @id @default(autoincrement())
+  caption         String?
+  totalUsersLiked Int         @default(0)
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id])
+  usersLiked      LikePost[]
+  hashtags        Hashtag[]
+  photos          PostPhoto[]
+  comments        Comment[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
 }
 
 model Hashtag {

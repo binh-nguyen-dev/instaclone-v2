@@ -19,15 +19,6 @@ export default {
         where: { postId },
       });
     },
-    totalUsersLiked: async ({ id: postId }) => {
-      return client.user.count({
-        where: {
-          postsLiked: {
-            some: { postId },
-          },
-        },
-      });
-    },
     totalComments: async ({ id: postId }) => {
       return client.comment.count({
         where: {
@@ -67,6 +58,42 @@ export default {
         skip: cursor ? 1 : 0,
         take,
       });
+    },
+  },
+  Hashtag: {
+    totalPosts: async ({ name }) => {
+      return client.post.count({
+        where: {
+          hashtags: { some: { name } },
+        },
+      });
+    },
+    topPosts: async ({ name }, { nPosts = 9 }) => {
+      const topPosts = await client.post.findMany({
+        where: {
+          hashtags: { some: { name } },
+        },
+        take: nPosts,
+        orderBy: {
+          totalUsersLiked: "desc",
+        },
+      });
+
+      return topPosts;
+    },
+    mostRecentPosts: async ({ name }, { cursor, take = 36 }) => {
+      return client.hashtag
+        .findUnique({
+          where: { name },
+        })
+        .posts({
+          ...(cursor && { cursor: { id: cursor } }),
+          skip: cursor ? 1 : 0,
+          take,
+          orderBy: {
+            updatedAt: "desc",
+          },
+        });
     },
   },
 };

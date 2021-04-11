@@ -18,6 +18,13 @@ export default generateComposedResolver({
             userId_postId: { userId: loggedInUser.id, postId },
           },
         });
+
+        await client.post.update({
+          where: { id: postId },
+          data: {
+            totalUsersLiked: { decrement: 1 },
+          },
+        });
       } else {
         await client.likePost.create({
           data: {
@@ -27,6 +34,13 @@ export default generateComposedResolver({
             post: {
               connect: { id: postId },
             },
+          },
+        });
+
+        await client.post.update({
+          where: { id: postId },
+          data: {
+            totalUsersLiked: { increment: 1 },
           },
         });
       }

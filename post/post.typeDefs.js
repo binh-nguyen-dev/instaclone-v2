@@ -4,13 +4,13 @@ export default gql`
   type Post {
     id: Int!
     caption: String
+    totalUsersLiked: Int!
     createdAt: String!
     updatedAt: String!
     user: User
     hashtags: [Hashtag!]!
     photos: [PostPhoto!]!
     comments(cursor: Int, take: Int): [Comment!]!
-    totalUsersLiked: Int!
     totalComments: Int!
     isMine: Boolean!
     isLiked: Boolean!
@@ -21,7 +21,8 @@ export default gql`
     name: String!
     createdAt: String!
     updatedAt: String!
-    posts: [Post!]!
+    topPosts(nPosts: Int): [Post!]!
+    mostRecentPosts(cursor: Int, take: Int): [Post!]!
     totalPosts: Int!
   }
 

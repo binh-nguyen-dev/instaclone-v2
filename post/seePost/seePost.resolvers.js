@@ -6,18 +6,6 @@ export default {
     seePost: async (_, { postId }) => {
       const post = await client.post.findUnique({
         where: { id: postId },
-<<<<<<< HEAD
-=======
-        include: {
-          user: {
-            include: {
-              avatar: true,
-            },
-          },
-          hashtags: true,
-          photos: true,
-        },
->>>>>>> 7892b9f... handle READ operation for Post model
       });
 
       if (!post) {
