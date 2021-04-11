@@ -7,7 +7,8 @@ export default gql`
     createdAt: String!
     updatedAt: String!
     user: User
-    usersLiked: [User!]!
-    post: Post!
+    totalUsersLiked: Int!
+    isMine: Boolean!
+    isLiked: Boolean!
   }
 `;
