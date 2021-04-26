@@ -44,3 +44,7 @@ export const editProfileSchema = Joi.object({
   email: emailRule,
   bio: bioRule,
 });
+
+export const editPasswordSchema = Joi.object({
+  newPassword: passwordRule,
+});

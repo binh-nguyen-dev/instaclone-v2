@@ -25,7 +25,7 @@ export const getUser = async (token) => {
         id: decoded.id,
         OR: [
           { passwordChangedAt: null },
-          { passwordChangedAt: { lt: new Date(decoded.iat * 100) } },
+          { passwordChangedAt: { lt: new Date(decoded.iat * 1000) } },
         ],
       },
     });
@@ -53,6 +53,7 @@ export const generateComposedResolver = (resolver) => {
     "Mutation.toggleLikePost": [protect()],
     "Mutation.toggleLikeComment": [protect()],
     "Mutation.editProfile": [protect()],
+    "Mutation.editPassword": [protect()],
   };
 
   return composeResolvers(resolver, resolversComposition);
