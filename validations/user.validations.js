@@ -25,10 +25,22 @@ const passwordRule = Joi.string().empty().min(8).messages({
   "string.min": `"password" should have a minimum length of {#limit}`,
 });
 
+const bioRule = Joi.string().empty().messages({
+  "string.empty": `"bio" can not be an empty field`,
+});
+
 export const createAccountSchema = Joi.object({
   firstName: firstNameRule,
   lastName: lastNameRule,
   username: usernameRule,
   email: emailRule,
   password: passwordRule,
+});
+
+export const editProfileSchema = Joi.object({
+  firstName: firstNameRule,
+  lastName: lastNameRule,
+  username: usernameRule,
+  email: emailRule,
+  bio: bioRule,
 });

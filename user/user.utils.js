@@ -52,6 +52,7 @@ export const generateComposedResolver = (resolver) => {
     "Mutation.createComment": [protect()],
     "Mutation.toggleLikePost": [protect()],
     "Mutation.toggleLikeComment": [protect()],
+    "Mutation.editProfile": [protect()],
   };
 
   return composeResolvers(resolver, resolversComposition);
