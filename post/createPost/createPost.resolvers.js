@@ -4,6 +4,7 @@ import { uploadPhotos } from "../../shared/shared.utils";
 import { generateComposedResolver } from "../../user/user.utils";
 import runValidation from "../../validations";
 import { createPostSchema } from "../../validations/posts.validations";
+import { parseCaption } from "../post.utils";
 
 export default generateComposedResolver({
   Mutation: {
@@ -52,8 +53,7 @@ async function processData(loggedInUser, { caption, photos }) {
 }
 
 function processCaption(caption) {
-  // accepts text have format: #[text] / #[text]-[text] / #[text]_[text]
-  const hashtags = caption.match(/(#[a-z\d-_]+)/gi) || [];
+  const hashtags = parseCaption(caption);
 
   const dataForHashtags = hashtags.map((hashtag) => ({
     create: { name: hashtag },

@@ -10,3 +10,7 @@ export const createPostSchema = Joi.object({
   caption: captionRule,
   photos: photosRule,
 });
+
+export const editPostSchema = Joi.object({
+  caption: captionRule,
+});
