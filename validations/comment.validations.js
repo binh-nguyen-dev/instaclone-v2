@@ -7,3 +7,7 @@ const contentRule = Joi.string().empty().messages({
 export const createCommentSchema = Joi.object({
   content: contentRule,
 });
+
+export const editCommentSchema = Joi.object({
+  content: contentRule,
+});

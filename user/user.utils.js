@@ -56,6 +56,7 @@ export const generateComposedResolver = (resolver) => {
     "Mutation.editPassword": [protect()],
     "Mutation.editAvatar": [protect()],
     "Mutation.editPost": [protect()],
+    "Mutation.editComment": [protect()],
   };
 
   return composeResolvers(resolver, resolversComposition);
