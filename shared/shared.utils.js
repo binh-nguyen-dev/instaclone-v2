@@ -66,3 +66,8 @@ const parser = new DatauriParser();
 function convertBufferToDatauri(filename, buffer) {
   return parser.format(path.extname(filename).toString(), buffer).content;
 }
+
+export const deletePhotos = async (resourcesForDelete) => {
+  if (resourcesForDelete)
+    await cloudinary.api.delete_resources(resourcesForDelete);
+};

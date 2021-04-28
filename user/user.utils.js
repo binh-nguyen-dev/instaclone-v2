@@ -58,6 +58,7 @@ export const generateComposedResolver = (resolver) => {
     "Mutation.editPost": [protect()],
     "Mutation.editComment": [protect()],
     "Query.seeFeed": [protect()],
+    "Mutation.deletePost": [protect()],
   };
 
   return composeResolvers(resolver, resolversComposition);

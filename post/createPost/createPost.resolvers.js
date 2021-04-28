@@ -1,6 +1,5 @@
-const cloudinary = require("cloudinary").v2;
 import client from "../../client";
-import { uploadPhotos } from "../../shared/shared.utils";
+import { deletePhotos, uploadPhotos } from "../../shared/shared.utils";
 import { generateComposedResolver } from "../../user/user.utils";
 import runValidation from "../../validations";
 import { createPostSchema } from "../../validations/posts.validations";
@@ -19,8 +18,7 @@ export default generateComposedResolver({
 
         await client.post.create({ data });
       } catch (error) {
-        if (resourcesForDelete)
-          await cloudinary.api.delete_resources(resourcesForDelete);
+        await deletePhotos(resourcesForDelete);
         throw error;
       }
 

@@ -1,6 +1,5 @@
-const cloudinary = require("cloudinary").v2;
 import client from "../../client";
-import { uploadPhoto } from "../../shared/shared.utils";
+import { deletePhotos, uploadPhoto } from "../../shared/shared.utils";
 import { generateComposedResolver } from "../user.utils";
 
 export default generateComposedResolver({
@@ -34,8 +33,7 @@ export default generateComposedResolver({
 
         return { ok: true };
       } catch (error) {
-        if (resourcesForDelete)
-          await cloudinary.api.delete_resources(resourcesForDelete);
+        await deletePhotos(resourcesForDelete);
         throw error;
       }
     },
@@ -55,7 +53,7 @@ async function getOldAvatar(userId) {
 
 async function processAvatar(avatar, { oldAvatar, userId }) {
   if (oldAvatar) {
-    await cloudinary.api.delete_resources(oldAvatar.publicId);
+    await deletePhotos(oldAvatar.publicId);
   }
 
   const newAvatar = await uploadPhoto(userId, {
