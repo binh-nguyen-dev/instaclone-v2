@@ -60,6 +60,7 @@ export const generateComposedResolver = (resolver) => {
     "Query.seeFeed": [protect()],
     "Mutation.deletePost": [protect()],
     "Mutation.deleteComment": [protect()],
+    "Mutation.toggleFollow": [protect()],
   };
 
   return composeResolvers(resolver, resolversComposition);
